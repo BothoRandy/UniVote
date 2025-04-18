@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniVote - Log In</title>
+    <link href="../Botho School/style.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="../Botho School/download.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: 300px;
+        }
+        .logo {
+            font-size: 40px;
+            font-weight: bold;
+            color: #1877f2;
+            margin-bottom: 20px;
+        }
+        .login-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            text-align: center;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .login-box button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1877f2;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-box button:hover {
+            background-color: #155db8;
+        }
+        .forgot-password {
+            display: block;
+            margin: 10px 0;
+            color: #1877f2;
+            text-decoration: none;
+        }
+        .create-account {
+            background-color: #42b72a;
+            margin-top: 10px;
+        }
+        .create-account:hover {
+            background-color: #36a420;
+        }
+        .navbar {
+            margin-bottom: 0;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="signin.html">Sign In</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" style="margin-top: 80px;">
+        <div class="logo">UniVote</div>
+        <div class="login-box">
+            <input type="text" placeholder="Email or Phone Number">
+            <input type="password" placeholder="Password">
+            <button>Log In</button>
+            <a href="#" class="forgot-password">Forgotten password?</a>
+            <a href="registration.html" class="create-account btn btn-success mt-2">Create New Account</a>
+        </div>
+    </div>
+    <footer>
+        <p>Contact us: <a href="abc23@bac.ac.bw">abc23@thuto.bac.ac.bw.</a> |
+        Phone: <a href="tel: +77395789">+267 74963950</a></p>
+        Created in 2025. All rights reserved.
+    </footer>
+</body>
+</html>
