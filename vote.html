@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UniVote</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      background-color: #f0f2f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      padding-top: 30px;
+    }
+
+    .banner {
+      background-color: #1877f2;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    .vote-container {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .btn-cancel {
+      background-color: #ccc;
+      color: #333;
+    }
+
+    .btn-submit {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .btn-cancel:hover {
+      background-color: #b1b1b1;
+    }
+
+    .btn-submit:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">Every Click Counts — Vote Now!</div>
+
+  <div class="vote-container">
+    <form id="voteForm">
+      <div class="form-group">
+        <label for="username">Student Username</label>
+        <input type="text" class="form-control" id="username" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Student Password</label>
+        <input type="password" class="form-control" id="password" required />
+      </div>
+
+      <div class="form-group mt-3">
+        <label>Select a Party:</label><br />
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="party" value="Moono-wa-baithuti" required />
+          <label class="form-check-label">Moono-wa-baithuti</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="party" value="RSL" required />
+          <label class="form-check-label">RSL</label>
+        </div>
+      </div>
+
+      <div class="btn-container">
+        <button type="reset" class="btn btn-cancel">Cancel</button>
+        <button type="submit" class="btn btn-submit">Submit Vote</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("voteForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const party = document.querySelector('input[name="party"]:checked')?.value;
+
+      if (!username || !password || !party) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      try {
+        const response = await fetch("/api/vote", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password, party }),
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          alert("✅ Vote submitted successfully!");
+          document.getElementById("voteForm").reset();
+        } else {
+          alert("❌ " + (result.message || "Vote failed. You may have already voted."));
+        }
+      } catch (error) {
+        alert("Error submitting vote.");
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>
