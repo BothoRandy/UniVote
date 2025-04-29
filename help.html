@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniVote - How to Vote</title>
+    <link href="../Botho School/style.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="../Botho School/download.png" type="image/png">
+
+  <style>
+    .help-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1rem;
+    min-height: calc(100vh - 150px); /* Leaves space for footer */
+    background-color: #f4f6f8;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .help-steps ol {
+    padding-left: 1.5rem;
+  }
+  
+  .faq-section textarea {
+    width: 100%;
+    height: 100px;
+    margin: 1rem 0;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #1e293b;
+    color: #ccc;
+    font-size: 0.875rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html"><img id="logo" src="../Botho School/download.png" alt="Icon"> UniVote</a> 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="signin.html">Sign In</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="profile.html">Profile</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="help.html">Help</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+  <main class="help-content">
+    <section class="card help-steps">
+      <h2>🗳️ How to Vote</h2>
+      <ol>
+        <li>Log in to your voter profile.</li>
+        <li>Navigate to the “Vote” page.</li>
+        <li>Review candidate profiles and manifestos.</li>
+        <li>Select your preferred candidates.</li>
+        <li>Click the “Cast Vote” button.</li>
+        <li>Confirm your vote — you're done!</li>
+      </ol>
+    </section>
+
+    <section class="card faq-section">
+      <h2>❓ Have a Question?</h2>
+      <p>Type your question below. We'll get back to you or update our FAQ based on it:</p>
+      <textarea placeholder="Type your question here..."></textarea>
+      <button class="cta-button">Submit Question</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>Contact us: <a href="mailto:abc23@thuto.bac.ac.bw">abc23@thuto.bac.ac.bw</a> | 
+    Phone: <a href="tel:+26774963950">+267 74963950</a></p>
+    <p>Created in 2025. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
