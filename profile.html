@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Voter Profile</title>
+  <link rel="stylesheet" href="profile.css" />
+  <style>
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #408edb;
+    display: flex;
+    background: linear-gradient(to right, #408edb, #1e293b);
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  
+  /* Main profile card */
+  .profile-container {
+    max-width: 1000px;
+    width: 100%;
+  }
+  
+  .profile-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Image section on left */
+  .image-section {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .image-label {
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  #profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #3b82f6;
+    transition: 0.3s ease;
+  }
+  
+  #image-upload {
+    display: none;
+  }
+  
+  .image-label p {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  /* Form section on right */
+  form {
+    flex: 2;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #222;
+  }
+  
+  form label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 0.4rem;
+    transition: border 0.3s;
+  }
+  
+  form input:focus {
+    border-color: #3b82f6;
+    outline: none;
+  }
+  
+  button {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #2563eb;
+  }
+  
+  /* QR section */
+  .qr-section {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .qr-section img {
+    margin-top: 0.5rem;
+    width: 150px;
+    height: 150px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .profile-card {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .image-section,
+    form {
+      width: 100%;
+    }
+  
+    #profile-pic {
+      width: 140px;
+      height: 140px;
+    }
+  }
+  .progress-bar {
+    height: 10px;
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin-top: 1rem;
+  }
+  
+  .filled {
+    height: 100%;
+    background-color: #4caf50;
+    border-radius: 5px;
+  }
+  
+  </style>
+</head>
+<body>
+
+  <div class="profile-container">
+    <div class="profile-card">
+      
+      <!-- LEFT: Profile Image -->
+      <div class="image-section">
+        <label for="image-upload" class="image-label">
+          <img id="profile-pic" src="images/avatar.png" alt="Profile Picture" />
+          <p>Click to change photo</p>
+        </label>
+        <input type="file" id="image-upload" accept="image/*" />
+      </div>
+
+      <div class="progress-bar">
+        <div class="filled" style="width: 80%"></div>
+      </div>
+        <p class="progress-text">Profile Completion: 80%</p>
+      
+
+      <!-- RIGHT: Form -->
+      <form id="profile-form">
+        <h1>Voter Profile</h1>
+
+        <label>Full Name:</label>
+        <input type="text" name="name"/>
+
+        <label>Email:</label>
+        <input type="email" name="email"/>
+
+        <label>Age:</label>
+        <input type="number" name="age" >
+
+        <label>Date of Birth:</label>
+        <input type="date" name="dob" />
+
+        <label>Voter ID (for QR):</label>
+        <input type="text" name="voterId" id="voter-id" />
+
+        <button type="submit">Save Profile</button>
+
+        <div class="qr-section">
+          <h3>Your QR Code</h3>
+          <img id="qr-code" src="" alt="QR Code" />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // QR Code load
+    const voterInput = document.getElementById('voter-id');
+    const qrImage = document.getElementById('qr-code');
+
+    function updateQR() {
+      const id = voterInput.value;
+      qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?data=${id}&size=150x150`;
+    }
+
+    voterInput.addEventListener('input', updateQR);
+    window.onload = updateQR;
+
+    // Profile Picture Upload
+    const uploadInput = document.getElementById('image-upload');
+    const profilePic = document.getElementById('profile-pic');
+
+    uploadInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        profilePic.src = URL.createObjectURL(file);
+      }
+    });
+  </script>
+
+</body>
+
+</html>
